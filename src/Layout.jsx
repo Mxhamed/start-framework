@@ -1,13 +1,17 @@
 import { Outlet, Link, useLocation } from "react-router";
 import InfoSection from "./components/InfoSection";
 import NavLink from "./components/NavLink";
+import { useEffect } from "react";
 
 export default function Layout() {
   const { pathname: path } = useLocation();
 
   const title =
     !path || path === "/" ? "Home" : path.at(1).toUpperCase() + path.slice(2);
-  document.title = title;
+
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
 
   return (
     <>
